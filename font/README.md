@@ -73,4 +73,7 @@ Offset  Data Type         Info
 0x000C  6 bytes           Unknown information. Appears to be three more 16-bit
                           integers. Possibly information about baseline or
                           kerning.
+
+        After all characters (relative offsets follow):
+0x0000  16 bytes          Unknown information. Possibly a GUID.
 ```
