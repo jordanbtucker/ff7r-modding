@@ -58,22 +58,25 @@ described here.
 The `*.uexp` file for font data has the following known structure so far.
 
 ```
-Offset  Data Type         Info
-0x0000  8 bytes           Unknown information
-0x0008  32-bit integer    The number of characters in the font
+ Offset  Data Type         Info
+ 0x0000  6 bytes           Unknown information. If the data is 0x010201050000,
+                           read an additional 2 bytes of unknown information.
++0x0000  32-bit integer    The number of characters in the font.
 
-0x000C  For each character (relative offsets follow):
++0x0004  For each character (relative offsets follow):
 
-0x0000  UTF-16 code unit  The current character
-0x0002  16-bit integer    The texture index where the character resides
-0x0004  16-bit integer    The X coordinate of the character on the texture map
-0x0006  16-bit integer    The Y coordinate of the character on the texture map
-0x0008  16-bit integer    The width of the character on the texture map
-0x000A  16-bit integer    The height of the character on the texture map
-0x000C  6 bytes           Unknown information. Appears to be three more 16-bit
-                          integers. Possibly information about baseline or
-                          kerning.
++0x0000  UTF-16 code unit  The current character.
+ 0x0002  16-bit integer    The texture index where the character resides.
+ 0x0004  16-bit integer    The X coordinate of the character on the texture
+                           map.
+ 0x0006  16-bit integer    The Y coordinate of the character on the texture
+                           map.
+ 0x0008  16-bit integer    The width of the character on the texture map.
+ 0x000A  16-bit integer    The height of the character on the texture map.
+ 0x000C  6 bytes           Unknown information. Appears to be three more 16-bit
+                           integers. Possibly information about baseline or
+                           kerning.
 
         After all characters (relative offsets follow):
-0x0000  16 bytes          Unknown information. Possibly a GUID.
++0x0000  16 bytes          Unknown information. Possibly a GUID.
 ```
