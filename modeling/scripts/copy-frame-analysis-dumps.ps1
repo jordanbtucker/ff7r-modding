@@ -41,6 +41,11 @@ $hashMap.Keys
   | Sort-Object -Property Name -Descending
   | ForEach-Object { $signatureMap["$id-$((Get-FileHash $_).Hash)"] = $_ } }
 
+# Create the output directory if it doesn't exist
+if ( -not (Test-Path $OutputDirectory)) {
+  New-Item -Path $OutputDirectory -ItemType Directory
+}
+
 # Copy all unique files to the output direcotry
 $signatureMap.Values
 | ForEach-Object { Copy-Item -Path $_ -Destination $OutputDirectory }
